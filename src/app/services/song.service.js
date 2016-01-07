@@ -4,16 +4,17 @@ export class SongService{
 		this.$http = $http;
 		this.api = AppService.api;
 		this.$user = UserService;
-		this.$app - AppService;
+		this.$app = AppService;
 	}
 
 	getSongs(){
 		return this.$http({
-			method: 'GET',
+			method: 'POST',
 			url: this.api + '/songs',
 			headers: {
 				'Token': 'Bearer: ' + this.$app.getToken()
-			}
+			},
+			data:{}
 		})
 	}
 }

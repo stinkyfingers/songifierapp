@@ -8,11 +8,14 @@ export class MainController {
     this.log_in = () => {this.login(this.creds)};
     this.log_out = () => {this.logout()};
     this.user = this.getUser();
+    this.songs = this.getSongs();
   }
 
   getSongs(){
     this.$song.getSongs().then((resp) => {
       this.$songs = resp.data;
+    }, (err) => {
+      console.log(err);//TODO remove
     });
   }
 
