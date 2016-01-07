@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="row">
+    <div class="large-12 large-text-center columns">
+      <div class="panel">
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-if="!main.user">
+    <div class="large-4 columns">
+      <label>Email</label>
+      <input type="text" name="email" ng-model="main.creds.email">
+      <label>Password</label>
+      <input type="password" name="password" ng-model="main.creds.password">
+      <button ng-click="main.log_in()">Log In</button>
+    </div>
+  </div>
+
+  <div class="row" ng-if="main.user">
+    <div class="large-4 columns">
+      <button ng-click="main.log_out()">Log Out</button>
+    </div>
+  </div>
+
+</div>
