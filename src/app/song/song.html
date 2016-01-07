@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div class="row">
+    <div class="large-12 large-text-center columns">
+      <div class="panel">
+      <label for="name">Name</label>
+      <input type="text" name="name" ng-model="song.song.name">
+      <label for="name">Artist</label>
+      <input type="text" name="artist" ng-model="song.song.artist">
+      <label for="name">Link</label>
+      <input type="text" name="link" ng-model="song.song.link">
+      <label for="name">Genre</label>
+      <select name="genre" ng-model="song.song.genre">
+      	<option ng-repeat="genre in song.genres" value="genre">{{genre.name}}</option>
+      </select>
+      <label for="name">Comments (optional)</label>
+      <input type="text" name="comments" ng-model="song.song.comments">
+      <button ng-click="song.save()">Save</button>
+        
+      </div>
+      <!-- <button ng-click="song.increment(1)">+</button>
+      <button ng-click="song.increment(-1)">-</button> -->
+    </div>
+  </div>
+</div>
