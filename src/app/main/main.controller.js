@@ -13,9 +13,9 @@ export class MainController {
 
   getSongs(){
     this.$song.getSongs().then((resp) => {
-      this.$songs = resp.data;
+      this.songs = resp.data;
     }, (err) => {
-      console.log(err);//TODO remove
+      this.$app.error(err.data);
     });
   }
 
@@ -24,6 +24,8 @@ export class MainController {
         this.$app.setUser(resp.data);
         this.$app.setToken(resp.data.token);
         this.user = resp.data;
+    }, (err) =>{
+        this.$app.error(err.data);
     });
   }
 

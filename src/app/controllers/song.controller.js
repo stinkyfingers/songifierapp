@@ -1,9 +1,10 @@
 export class SongController {
-  constructor (SongService) {
+  constructor (SongService, AppService) {
     'ngInject';
     this.$song = SongService;
+    this.$app = AppService;
     this.genres = this.getGenres();
-    this.save = () => {this.save(this.song)};
+    this.save = () => {this.saveSong(this.song)};
     this.remove = () =>{ this.remove(this.song)};
   }
 
@@ -11,25 +12,34 @@ export class SongController {
 		this.$song.getGenres().then((resp) => {
 			this.genres = resp.data;
 		}, (err) => {
-
+			this.$app.error(err.data);
 		});
 	}
 
-	save(song){
+	saveSong(song){
 		if (!song){
-			//err
+			this.$app.error('No song provided.');
+			return;
 		}
-		if (song.id){
+		if (!song.comments){
+			song.comments = [];
+		}
+		song.comments.push({text: this.comment, user: this.$app.getUser()});
+		if (!song.id){
 			this.$song.create(song).then((resp) => {
-				this.song = resp.data;
+				this.song = {};
+				this.comment = {}
+				this.$app.success('Song ' + resp.data.name + ' added.');
 			}, (err) => {
-
+				this.$app.error(err.data);
 			});
-		} else{
+		} else {
 			this.$song.update(song).then((resp) => {
-				this.song = resp.data;
+				this.song = {};
+				this.comment = {}
+				this.$app.success('Song ' + resp.data.name + ' added.');
 			}, (err) => {
-
+				this.$app.error(err.data);
 			});
 		}
 	}
@@ -38,7 +48,7 @@ export class SongController {
 		this.$song.remove(song).then(()=> {
 
 		}, (err) => {
-
+			this.$app.error(err.data);
 		});
 	}
 

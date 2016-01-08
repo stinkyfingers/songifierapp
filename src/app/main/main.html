@@ -3,7 +3,32 @@
   <div class="row">
     <div class="large-12 large-text-center columns">
       <div class="panel">
-        
+        <table class="songs">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Artist</th>
+              <th>Genre</th>
+              <th>User</th>
+              <th>Votes</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="song in main.songs">
+              <th>{{song.name}}</th>
+              <th>{{song.artist}}</th>
+              <th>{{song.genre.name}}</th>
+              <th>{{song.user.name}}</th>
+              <th>Votes</th>
+              <th>
+                <span ng-repeat="($i, comment) in song.comments">
+                  {{comment.text}} - {{comment.user.name}}
+                </span>
+              </th>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -10,7 +10,7 @@ export class UserService{
 			method: 'POST',
 			url: this.api + '/user',
 			data: user
-		})
+		});
 	}
 	
 }

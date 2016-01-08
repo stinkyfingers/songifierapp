@@ -1,8 +1,9 @@
 export class AppService{
-	constructor(localStorageService){
+	constructor(localStorageService, toastr){
 		'ngInject';
 		this.api = 'http://localhost:8080';
 		this.storage = localStorageService;
+		this.$toast = toastr;
 	}
 
 	setToken(token){
@@ -21,5 +22,11 @@ export class AppService{
 		return this.storage.clearAll();
 	}
 
+	success(msg){
+		this.$toast.success(msg);
+	}
 	
+	error(msg){
+		this.$toast.error(msg);
+	}
 }

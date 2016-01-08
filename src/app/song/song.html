@@ -10,16 +10,15 @@
       <label for="name">Link</label>
       <input type="text" name="link" ng-model="song.song.link">
       <label for="name">Genre</label>
-      <select name="genre" ng-model="song.song.genre">
-      	<option ng-repeat="genre in song.genres" value="genre">{{genre.name}}</option>
+      <select name="genre" ng-model="song.song.genre.name">
+      	 <option ng-repeat="genre in song.genres" value="genre">{{genre.name}}</option>
       </select>
       <label for="name">Comments (optional)</label>
-      <input type="text" name="comments" ng-model="song.song.comments">
+      <input type="text" name="comments" ng-model="song.comment">
       <button ng-click="song.save()">Save</button>
         
       </div>
-      <!-- <button ng-click="song.increment(1)">+</button>
-      <button ng-click="song.increment(-1)">-</button> -->
+     
     </div>
   </div>
 </div>
