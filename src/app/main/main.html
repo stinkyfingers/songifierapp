@@ -12,20 +12,25 @@
               <th>User</th>
               <th>Votes</th>
               <th>Comments</th>
+              <th>VOTE!</th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="song in main.songs">
-              <th>{{song.name}}</th>
-              <th>{{song.artist}}</th>
-              <th>{{song.genre.name}}</th>
-              <th>{{song.user.name}}</th>
-              <th>Votes</th>
-              <th>
+              <td>{{song.name}}</td>
+              <td>{{song.artist}}</td>
+              <td>{{song.genre.name}}</td>
+              <td>{{song.user.name}}</td>
+              <td>{{song.total}}</td>
+              <td>
                 <span ng-repeat="($i, comment) in song.comments">
                   {{comment.text}} - {{comment.user.name}}
                 </span>
-              </th>
+              </td>
+              <td>
+                <select ng-model="song.user_vote" name="vote" ng-change="main.vote(song, song.user_vote)" ng-options="option for option in main.vote_options">
+                </select>
+              </td>
             </tr>
           </tbody>
         </table>
