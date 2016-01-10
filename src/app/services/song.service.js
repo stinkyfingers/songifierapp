@@ -18,6 +18,16 @@ export class SongService{
 		})
 	}
 
+	getSong(song){
+		return this.$http({
+			method: 'GET',
+			url: this.api + '/song/' + song.id,
+			headers: {
+				'Token': 'Bearer: ' + this.$app.getToken()
+			}
+		})
+	}
+
 	create(song){
 		return this.$http({
 			method: 'POST',

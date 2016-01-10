@@ -1,5 +1,5 @@
 export class MainController {
-  constructor (SongService, UserService, AppService) {
+  constructor (SongService, UserService, AppService, $location) {
     'ngInject';
 
     this.$song = SongService;
@@ -11,6 +11,11 @@ export class MainController {
     this.songs = this.getSongs();
     this.vote_options = [1,2,3,4,5];
     this.vote = (song, option) => {this.voteOnSong(song, option);};
+    this.edit = (song) => {$location.path('/song/' + song.id);};
+    this.addComment = (song) => {
+      song.comments.push({text: song.newComment, user: this.user});
+      this.updateSong(song);
+    };
   }
 
   getSongs(){
@@ -35,6 +40,14 @@ export class MainController {
     }, (err) => {
       this.$app.error(err.data);
     });
+  }
+
+  updateSong(song){
+    this.$song.update(song).then((resp) => {
+        this.$app.success('Song ' + resp.data.name + ' saved.');
+      }, (err) => {
+        this.$app.error(err.data);
+      });
   }
 
   voteOnSong(song, option){

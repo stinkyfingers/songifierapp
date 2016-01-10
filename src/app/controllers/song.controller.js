@@ -1,16 +1,28 @@
 export class SongController {
-  constructor (SongService, AppService) {
+  constructor (SongService, AppService, $routeParams) {
     'ngInject';
     this.$song = SongService;
     this.$app = AppService;
     this.genres = this.getGenres();
     this.save = () => {this.saveSong(this.song)};
     this.remove = () =>{ this.remove(this.song)};
+    if ($routeParams.id){
+		this.getSong({'id': $routeParams.id});
+    }
+
   }
 
 	getGenres (){
 		this.$song.getGenres().then((resp) => {
 			this.genres = resp.data;
+		}, (err) => {
+			this.$app.error(err.data);
+		});
+	}
+
+	getSong(song){
+		this.$song.getSong(song).then((resp) => {
+			this.song = resp.data;
 		}, (err) => {
 			this.$app.error(err.data);
 		});
@@ -37,7 +49,7 @@ export class SongController {
 			this.$song.update(song).then((resp) => {
 				this.song = {};
 				this.comment = {}
-				this.$app.success('Song ' + resp.data.name + ' added.');
+				this.$app.success('Song ' + resp.data.name + ' saved.');
 			}, (err) => {
 				this.$app.error(err.data);
 			});

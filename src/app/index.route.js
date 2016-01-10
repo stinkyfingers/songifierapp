@@ -11,6 +11,11 @@ export function routerConfig ($routeProvider) {
       controller: 'SongController',
       controllerAs: 'song'
     })
+    .when('/song/:id',{
+      templateUrl: 'app/song/song.html',
+      controller: 'SongController',
+      controllerAs: 'song'
+    })
     .when('/user',{
       templateUrl: 'app/user/user.html',
       controller: 'UserController',

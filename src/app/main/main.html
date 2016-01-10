@@ -9,27 +9,37 @@
               <th>Name</th>
               <th>Artist</th>
               <th>Genre</th>
+              <th>Link</th>
               <th>User</th>
               <th>Votes</th>
               <th>Comments</th>
               <th>VOTE!</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="song in main.songs">
+            <tr ng-repeat="(i, song) in main.songs | filter: search">
               <td>{{song.name}}</td>
               <td>{{song.artist}}</td>
               <td>{{song.genre.name}}</td>
+              <td>{{song.link}}</td>
               <td>{{song.user.name}}</td>
               <td>{{song.total}}</td>
               <td>
                 <span ng-repeat="($i, comment) in song.comments">
                   {{comment.text}} - {{comment.user.name}}
                 </span>
+                <button ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Add Comment</button>
+                <button ng-click="main.addComment(main.songs[i]); main.songs[i].commenting = false" ng-if="main.songs[i].commenting === true">Done</button>
+
+                <textarea ng-if="main.songs[i].commenting === true" ng-model="song.newComment"></textarea>
               </td>
               <td>
                 <select ng-model="song.user_vote" name="vote" ng-change="main.vote(song, song.user_vote)" ng-options="option for option in main.vote_options">
                 </select>
+              </td>
+              <td>
+                <button ng-if="song.user.id === main.user.id" ng-click="main.edit(song)">Edit</button>
               </td>
             </tr>
           </tbody>
