@@ -5,7 +5,8 @@ export function NavbarDirective() {
     restrict: 'E',
     templateUrl: 'app/components/navbar/navbar.html',
     scope: {
-        creationDate: '='
+        creationDate: '=',
+        path: '='
     },
     controller: NavbarController,
     controllerAs: 'vm',
@@ -16,7 +17,8 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-  constructor () {
+  constructor ($route) {
     'ngInject';
+    this.$route = $route;
   }
 }

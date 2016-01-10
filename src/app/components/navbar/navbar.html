@@ -7,9 +7,9 @@
 
   <section class="top-bar-section">
     <ul class="right">
-      <li class="active"><a ng-href="/">Home</a></li>
-      <li><a ng-href="/song">Songs</a></li>
-      <li><a ng-href="/user">User</a></li>
+      <li ng-class="{active: vm.$route.current.tab === 'main'}"><a ng-href="/">Home</a></li>
+      <li ng-class="{active: vm.$route.current.tab === 'song'}"><a ng-href="/song">Songs</a></li>
+      <li ng-class="{active: vm.$route.current.tab === 'user'}"><a ng-href="/user">User</a></li>
     </ul>
     <p class="acme-navbar-text">Application was created {{ vm.relativeDate }}.</p>
   </section>
