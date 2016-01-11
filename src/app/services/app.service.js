@@ -1,7 +1,8 @@
 export class AppService{
 	constructor(localStorageService, toastr){
 		'ngInject';
-		this.api = 'http://localhost:8080';
+		// this.api = 'http://localhost:8080';
+		this.api = 'http://songifier.herokuapp.com';
 		this.storage = localStorageService;
 		this.$toast = toastr;
 	}
