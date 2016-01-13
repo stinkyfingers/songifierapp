@@ -9,7 +9,7 @@ export class SongController {
     if ($routeParams.id){
 		this.getSong({'id': $routeParams.id});
     }
-
+    this.saveGenre = () => {this.createGenre(this.genre);};
   }
 
 	getGenres (){
@@ -33,15 +33,21 @@ export class SongController {
 			this.$app.error('No song provided.');
 			return;
 		}
-		if (!song.comments){
+		song.user = this.$app.getUser();
+
+		if (!song.comments && this.comment){
 			song.comments = [];
 		}
-		song.comments.push({text: this.comment, user: this.$app.getUser()});
+		if(this.comment){
+			song.comments.push({text: this.comment, user: this.$app.getUser()});
+		}
 		if (!song.id){
 			this.$song.create(song).then((resp) => {
 				this.song = {};
 				this.comment = {}
 				this.$app.success('Song ' + resp.data.name + ' added.');
+				this.song = undefined;
+				this.comment = undefined;
 			}, (err) => {
 				this.$app.error(err.data);
 			});
@@ -50,6 +56,8 @@ export class SongController {
 				this.song = {};
 				this.comment = {}
 				this.$app.success('Song ' + resp.data.name + ' saved.');
+				this.song = undefined;
+				this.comment = undefined;
 			}, (err) => {
 				this.$app.error(err.data);
 			});
@@ -61,6 +69,20 @@ export class SongController {
 
 		}, (err) => {
 			this.$app.error(err.data);
+		});
+	}
+
+	createGenre(genre){
+		this.$song.createGenre(genre).then((resp) => {
+			if (!this.genres){
+				this.genres = [];
+			}
+			this.genres.push(resp.data);
+			this.genre = undefined;
+			this.genreEditor = undefined;
+		}, (err) => {
+			this.genreEditor = undefined;
+			this.$app.error(err);
 		});
 	}
 

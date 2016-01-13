@@ -72,4 +72,26 @@ export class SongService{
 			}
 		})
 	}
+
+	createGenre(genre){
+		return this.$http({
+			method: 'POST',
+			url: this.api + '/genre',
+			headers: {
+				'Token': 'Bearer: ' + this.$app.getToken()
+			},
+			data:genre
+		})
+	}
+
+	deleteGenre(genre){
+		return this.$http({
+			method: 'DEL',
+			url: this.api + '/genre',
+			headers: {
+				'Token': 'Bearer: ' + this.$app.getToken()
+			},
+			data:genre
+		})
+	}
 }
