@@ -1,9 +1,8 @@
 <div class="container">
-
-  <div class="row">
+  <!-- <div class="row">
     <div class="large-12 large-text-center columns" ng-if="main.songs.length">
       <div class="panel">
-        <table class="songs">
+        <table class="songs" role="grid">
           <thead>
             <tr>
               <th>Name</th>
@@ -29,24 +28,77 @@
                 <p class="comment" ng-repeat="($i, comment) in song.comments">
                   {{comment.text}} - {{comment.user.name}}
                 </p>
-                <button ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Add Comment</button>
-                <button ng-click="main.addComment(main.songs[i]); main.songs[i].commenting = false" ng-if="main.songs[i].commenting === true">Done</button>
-
-                <textarea ng-if="main.songs[i].commenting === true" ng-model="song.newComment"></textarea>
+                
               </td>
               <td>
                 <select ng-model="song.user_vote" name="vote" ng-change="main.vote(song, song.user_vote)" ng-options="option for option in main.vote_options">
                 </select>
               </td>
               <td>
-                <button ng-if="song.user.id === main.user.id" ng-click="main.edit(song)">Edit</button>
+                <button ng-if="song.user.id === main.user.id" ng-click="main.edit(song)">Edit Song</button>
+                <button ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Add Comment</button>
+                <button ng-click="main.addComment(main.songs[i]); main.songs[i].commenting = false" ng-if="main.songs[i].commenting === true" class="warning">Save Comment</button>
+
+                <textarea ng-if="main.songs[i].commenting === true" ng-model="song.newComment"></textarea>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  </div> -->
+
+
+<!-- <div class="row">
+  <div class="small-2 large-2 columns">Name</div>
+  <div class="small-2 large-2 columns">Artist</div>
+  <div class="small-2 large-2 columns">Genre</div>
+  <div class="small-2 large-2 columns">Link</div>
+  <div class="small-2 large-2 columns">User</div>
+  <div class="small-2 large-2 columns">Rank</div>
+  <div class="small-4 large-4 columns">Comments</div>
+  <div class="small-2 large-1 columns">VOTE!</div>
+  <div class="small-2 large-2 columns"></div>
+</div> -->
+<div class="row songs">
+  <h1 class="column"></h1>
+  <div class="row song" ng-repeat="(i, song) in main.songs | filter: search">
+    <div class="small-12 columns">
+      <div class="small-8 large-4 columns"><h5>Name: {{song.name}}</h5></div>
+      <div class="small-8 large-4 columns">Artist: {{song.artist}}</div>
+      <button class="small-4" ng-if="song.user.id === main.user.id" ng-click="main.edit(song)">Edit Song</button>
+    </div>
+    <div class="small-12 columns">
+      <div class="small-12 large-12 columns">Link: {{song.link}}</div>
+    </div>
+    <div class="small-12 columns">
+      <div class="small-8 large-8 columns">Genre: {{song.genre.name}}</div>
+      <div class="small-8 large-8 columns">User: {{song.user.name}}</div>
+      <div class="small-8 large-8 columns">Rank: {{song.total}}</div>
+      <button class="small-4" ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Add Comment</button>
+      <button class="small-4 warning" ng-click="main.addComment(main.songs[i]); main.songs[i].commenting = false" ng-if="main.songs[i].commenting === true" class="warning">Save Comment</button>
+    </div>
+
+    <div class="small-12 large-12 columns" ng-if="main.songs[i].commenting === true">
+      <textarea ng-model="song.newComment"></textarea>
+    </div>
+
+    <div class="small-12 columns">
+      <div class="small-12 large-12 columns">
+        <p class="comment" ng-repeat="($i, comment) in song.comments">
+          {{comment.text}} - {{comment.user.name}}
+        </p>
+      </div>
+    </div>
+    <div class="small-12 columns">
+      <div class="small-4 large-2 columns"><label for="vote">Vote:</label>
+        <select ng-model="song.user_vote" name="vote" ng-change="main.vote(song, song.user_vote)" ng-options="option for option in main.vote_options">
+        </select>
+      </div>
+    </div>
+    
   </div>
+</div>
 
   <div class="row" ng-if="!main.user">
     <div class="large-4 columns">
@@ -58,7 +110,7 @@
     </div>
   </div>
 
-  <div class="row" ng-if="main.user">
+  <div class="row logout" ng-if="main.user">
     <div class="large-4 columns">
       <button ng-click="main.log_out()" class="warning">Log Out</button>
     </div>
