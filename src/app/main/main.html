@@ -11,7 +11,7 @@
               <th>Genre</th>
               <th>Link</th>
               <th>User</th>
-              <th>Votes</th>
+              <th>Rank</th>
               <th>Comments</th>
               <th>VOTE!</th>
               <th></th>
@@ -26,9 +26,9 @@
               <td>{{song.user.name}}</td>
               <td>{{song.total}}</td>
               <td>
-                <span ng-repeat="($i, comment) in song.comments">
+                <p class="comment" ng-repeat="($i, comment) in song.comments">
                   {{comment.text}} - {{comment.user.name}}
-                </span>
+                </p>
                 <button ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Add Comment</button>
                 <button ng-click="main.addComment(main.songs[i]); main.songs[i].commenting = false" ng-if="main.songs[i].commenting === true">Done</button>
 
@@ -60,7 +60,7 @@
 
   <div class="row" ng-if="main.user">
     <div class="large-4 columns">
-      <button ng-click="main.log_out()">Log Out</button>
+      <button ng-click="main.log_out()" class="warning">Log Out</button>
     </div>
   </div>
 

@@ -15,6 +15,7 @@
       <label for="name">Comments (optional)</label>
       <input type="text" name="comments" ng-model="song.comment">
       <button ng-click="song.save()">Save</button>
+      <button ng-click="song.cancel()" class="secondary">Cancel</button>
       <button class="warning" ng-if="!song.genreEditor" ng-click="song.genreEditor = true">Create New Genre</button>
         
      </div>
@@ -29,7 +30,7 @@
     <label for="genre">Genre </label>
     <input type="text" name="genre" ng-model="song.genre.name">
     <button ng-click="song.saveGenre()">Save</button>
-    <button ng-click="song.genreEditor = undefined" class="warning">Cancel</button>
+    <button ng-click="song.genreEditor = undefined" class="secondary">Cancel</button>
   </div>
 
 </div>

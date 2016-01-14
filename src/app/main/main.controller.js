@@ -13,6 +13,9 @@ export class MainController {
     this.vote = (song, option) => {this.voteOnSong(song, option);};
     this.edit = (song) => {$location.path('/song/' + song.id);};
     this.addComment = (song) => {
+      if(song.newComment === '' || angular.isUndefined(song.newComment)){
+        return;
+      }
       song.comments.push({text: song.newComment, user: this.user});
       this.updateSong(song);
     };
