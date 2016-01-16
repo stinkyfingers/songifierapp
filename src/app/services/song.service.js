@@ -9,7 +9,7 @@ export class SongService{
 
 	getSongs(){
 		return this.$http({
-			method: 'POST',
+			method: 'GET',
 			url: this.api + '/songs',
 			headers: {
 				'Token': 'Bearer: ' + this.$app.getToken()
