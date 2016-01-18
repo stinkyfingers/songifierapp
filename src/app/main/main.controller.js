@@ -19,11 +19,15 @@ export class MainController {
       song.comments.push({text: song.newComment, user: this.user});
       this.updateSong(song);
     };
+    this.setGenre = (genre) => {
+      this.genre = genre;
+    }
   }
 
   getSongs(){
     this.$song.getSongs().then((resp) => {
       this.songs = resp.data;
+      this.genres = this.parseGenres(resp.data);
       for (let i in this.songs){
         this.songs[i].total = 0;
         let count = 0;
@@ -95,6 +99,18 @@ export class MainController {
 
   getUser(){
     return this.$app.getUser();
+  }
+
+  parseGenres(songs){
+    let genres = [];
+    let genreIDs = [];
+    for (let i in songs){
+      if (genreIDs.indexOf(songs[i].genre.id) === -1){
+        genres.push(songs[i].genre);
+        genreIDs.push(songs[i].genre.id)
+      }
+    }
+    return genres;
   }
 
 }
