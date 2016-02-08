@@ -1,10 +1,11 @@
 export class MainController {
-  constructor (SongService, UserService, AppService, $location) {
+  constructor (SongService, UserService, AppService, $location, $route) {
     'ngInject';
 
     this.$song = SongService;
     this.$user = UserService;
     this.$app = AppService;
+    this.$route = $route;
     this.log_in = () => {this.login(this.creds);};
     this.log_out = () => {this.logout();};
     this.user = this.getUser();
@@ -87,6 +88,7 @@ export class MainController {
         this.$app.setUser(resp.data);
         this.$app.setToken(resp.data.token);
         this.user = resp.data;
+        this.$route.reload();
     }, (err) =>{
         this.$app.error(err.data);
     });
@@ -105,7 +107,7 @@ export class MainController {
     let genres = [];
     let genreIDs = [];
     for (let i in songs){
-      if (genreIDs.indexOf(songs[i].genre.id) === -1){
+      if (songs[i].genre !== null && !angular.isUndefined(songs[i].genre) && genreIDs.indexOf(songs[i].genre.id) === -1){
         genres.push(songs[i].genre);
         genreIDs.push(songs[i].genre.id)
       }
