@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="row">
+    <div class="large-12 large-text-center columns">
+    <h3 ng-if="songs.error" class="danger">{{songs.error}}</h3>
+      <form name="songsForm" novalidate>
+        <table class="songsTable">
+          <thead>
+            <tr>
+              <th>Name</th><th>Artist</th><th>Link</th><th>Comments (optional)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="song_{{i}}" ng-repeat="(i, song) in songs.songs">
+              <td> 
+                <input name="name" ng-model="song.name" required/>
+                <span ng-show="songsForm.name.$invalid && songsForm.name.$touched" class="danger">Required</span>
+              </td>
+              <td> 
+                <input name="artist" ng-model="song.artist" required/>
+                <span ng-show="songsForm.artist.$invalid && songsForm.artist.$touched" class="danger">Required</span>
+              </td>
+              <td> 
+                <input name="youtube" ng-model="song.youtube" />
+              </td>
+              <td> 
+                <input name="comments" ng-model="song.comment" />
+              </td>
+              <td> 
+                <button ng-if="songs.songs.length === i + 1" name="increaseSongs" ng-click="songs.increaseSongs()" class="secondary">
+                  More Songs
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+
+      <button ng-click="songs.save()" ng-disabled="songsForm.$invalid">Save</button>
+      <button ng-click="songs.cancel()" class="secondary">Cancel</button>
+        
+     </div>
+    </div>
+  </div>
+</div>

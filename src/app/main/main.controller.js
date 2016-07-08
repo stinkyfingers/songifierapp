@@ -107,7 +107,7 @@ export class MainController {
     let genres = [];
     let genreIDs = [];
     for (let i in songs){
-      if (songs[i].genre !== null && !angular.isUndefined(songs[i].genre) && genreIDs.indexOf(songs[i].genre.id) === -1){
+      if (songs[i].genre !== null && angular.isDefined(songs[i].genre) && genreIDs.indexOf(songs[i].genre.id) === -1){
         genres.push(songs[i].genre);
         genreIDs.push(songs[i].genre.id)
       }

@@ -5,6 +5,7 @@ import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { SongController } from './controllers/song.controller';
+import { SongsController } from './controllers/songs.controller';
 import { UserController } from './controllers/user.controller';
 import { SongService } from '../app/services/song.service';
 import { UserService } from '../app/services/user.service';
@@ -22,5 +23,6 @@ angular.module('songifierapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize
   .controller('MainController', MainController)
   .controller('UserController', UserController)
   .controller('SongController', SongController)
+  .controller('SongsController', SongsController)
   .directive('acmeNavbar', NavbarDirective)
   .filter('songsFilter', SongsFilter);

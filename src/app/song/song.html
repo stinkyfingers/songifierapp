@@ -9,14 +9,14 @@
       <input type="text" name="artist" ng-model="song.song.artist">
       <label for="name">Link</label>
       <input type="text" name="link" ng-model="song.song.link">
-      <label for="name">Genre</label>
+      <!-- <label for="name">Genre</label>
       <select name="genre" ng-model="song.song.genre" ng-options="genre.name for genre in song.genres">
-      </select>
-      <label for="name">Comments (optional)</label>
-      <input type="text" name="comments" ng-model="song.comment">
+      </select> -->
+      <!-- <label for="name">Comments (optional)</label>
+      <input type="text" name="comments" ng-model="song.comment"> -->
       <button ng-click="song.save()">Save</button>
       <button ng-click="song.cancel()" class="secondary">Cancel</button>
-      <button class="warning" ng-if="!song.genreEditor" ng-click="song.genreEditor = true">Create New Genre</button>
+     <!--  <button class="warning" ng-if="!song.genreEditor" ng-click="song.genreEditor = true">Create New Genre</button> -->
         
      </div>
       
@@ -26,11 +26,11 @@
     </div>
   </div>
 
-  <div class="row" ng-if="song.genreEditor === true">
+  <!-- <div class="row" ng-if="song.genreEditor === true">
     <label for="genre">Genre </label>
     <input type="text" name="genre" ng-model="song.genre.name">
     <button ng-click="song.saveGenre()">Save</button>
     <button ng-click="song.genreEditor = undefined" class="secondary">Cancel</button>
-  </div>
+  </div> -->
 
 </div>

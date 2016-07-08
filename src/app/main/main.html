@@ -1,21 +1,28 @@
 <div class="container">
 <div class="row songs">
   <h1 class="column"></h1>
-  <label for="genre">Limit by genre</label>
+  <!-- <label for="genre">Limit by genre</label>
   <select name="genre" ng-model="main.genre" ng-change="main.setGenre(main.genre)" ng-options="genre.name for genre in main.genres">
     <option value="">-- all genres --</option>
-  </select>
+  </select> -->
   <div class="row song" ng-repeat="(i, song) in main.songs track by $index | songsFilter: main.genre">
     <div class="small-12 columns">
-      <div class="small-8 large-4 columns"><h5>Name: {{song.name}}</h5></div>
-      <div class="small-8 large-4 columns">Artist: {{song.artist}}</div>
-      <button class="small-4" ng-if="song.user.id === main.user.id" ng-click="main.edit(song)">Edit Song</button>
+      <div class="small-8 large-8 columns">
+        <h3>{{song.name}}</h3>
+      </div>
+      
+      <button class="small-4 editSong" ng-if="song.user.id === main.user.id" ng-click="main.edit(song)">Edit Song</button>
     </div>
     <div class="small-12 columns">
-      <div class="small-12 large-12 columns">Link: {{song.link}}</div>
+      <div class="small-8 large-8 columns">
+        <h4>Artist: {{song.artist}}</h4>
+      </div>
     </div>
     <div class="small-12 columns">
-      <div class="small-8 large-8 columns">Genre: {{song.genre.name}}</div>
+      <div class="small-12 large-12 columns" ng-show="song.link"><a ng-href="{{song.link}}" target="_blank">Link</a></div>
+    </div>
+    <div class="small-12 columns">
+      <!-- <div class="small-8 large-8 columns">Genre: {{song.genre.name}}</div> -->
       <div class="small-8 large-8 columns">User: {{song.user.name}}</div>
       <div class="small-8 large-8 columns">Rank: {{song.total}}</div>
       <button class="small-4" ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Add Comment</button>
