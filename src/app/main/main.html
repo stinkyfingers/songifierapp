@@ -43,9 +43,9 @@
       </div>
 
       <div class="small-10 large-3 columns">
+        <button class="small-1 info commentSong" ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Comment</button>
         <button class="small-1 editSong" ng-if="song.user.id === main.user.id" ng-click="main.edit(song)">Edit</button>
         <button class="small-1 warning deleteSong" ng-if="song.user.id === main.user.id" ng-click="main.deleteSong(song)">Delete</button>
-        <button class="small-1 commentSong" ng-click="main.songs[i].commenting = true" ng-if="!main.songs[i].commenting">Comment</button>
       </div>
 
     </div>   
