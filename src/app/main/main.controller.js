@@ -76,8 +76,13 @@ export class MainController {
         return this.updateSong(song);
   }
 
-  updateSong(song){
-    this.$song.update(song).then(() => {
+  deleteSong(song){
+    this.$song.remove(song).then(() => {
+      for (const i in this.songs) {
+        if (this.songs[i].id === song.id) {
+          this.songs.splice(i);
+        }
+      }
     }, (err) => {
       this.$app.error(err);
     });

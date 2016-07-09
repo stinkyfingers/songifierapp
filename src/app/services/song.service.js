@@ -57,11 +57,10 @@ export class SongService{
 	remove(song){
 		return this.$http({
 			method: 'DELETE',
-			url: this.api + '/song',
+			url: this.api + '/song?id=' + song.id,
 			headers: {
 				'Token': 'Bearer: ' + this.$app.getToken()
-			},
-			data:song
+			}
 		})
 	}
 

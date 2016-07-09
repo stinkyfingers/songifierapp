@@ -1,10 +1,8 @@
 export class SongsFilter {
-	constructor($log){
+	constructor(){
 		'ngInject';
 		return (songs, genre) => {
-			$log.debug(songs, genre);
 			if (!genre){
-				$log.debug('here');
 				return songs;
 			}
 			let result = [];

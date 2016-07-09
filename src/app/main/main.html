@@ -17,6 +17,7 @@
       <div class="small-8 large-8 columns">
         <h4>Artist: {{song.artist}}</h4>
       </div>
+      <button class="small-4 editSong warning" ng-if="song.user.id === main.user.id" ng-click="main.deleteSong(song)">Delete Song</button>
     </div>
     <div class="small-12 columns">
       <div class="small-12 large-12 columns" ng-show="song.link"><a ng-href="{{song.link}}" target="_blank">Link</a></div>
