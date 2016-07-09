@@ -80,7 +80,7 @@ export class MainController {
     this.$song.remove(song).then(() => {
       for (const i in this.songs) {
         if (this.songs[i].id === song.id) {
-          this.songs.splice(i);
+          this.songs.splice(i, 1);
         }
       }
     }, (err) => {

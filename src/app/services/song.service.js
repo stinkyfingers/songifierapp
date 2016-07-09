@@ -29,7 +29,7 @@ export class SongService{
 	}
 
 	create(song){
-		if (!song.link.includes('http')) {
+		if (song.link && song.link !== '' && !song.link.includes('http')) {
 			song.link = 'https://' + song.link;
 		}
 		return this.$http({
