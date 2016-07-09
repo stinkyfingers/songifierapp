@@ -64,6 +64,15 @@ $aqua: #5AADBB;
   margin-top: 1em;
 }
 
+.row {
+  max-width: 1400px;
+}
+
+//button 
+.editSong, .deleteSong, .commentSong {
+  padding: .6em 0;
+  min-width: 5em;
+}
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

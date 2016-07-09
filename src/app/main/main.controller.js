@@ -10,7 +10,7 @@ export class MainController {
     this.log_out = () => {this.logout();};
     this.user = this.getUser();
     this.songs = this.getSongs();
-    this.vote_options = [1,2,3,4,5];
+    this.vote_options = ['Vote', 1, 2, 3, 4, 5];
     this.vote = (song, option) => {this.voteOnSong(song, option);};
     this.edit = (song) => {$location.path('/song/' + song.id);};
     this.addComment = (song) => {
@@ -31,6 +31,7 @@ export class MainController {
       this.genres = this.parseGenres(resp.data);
       for (let i in this.songs){
         this.songs[i].total = 0;
+        this.songs[i].user_vote = 'Vote';
         let count = 0;
         for (let j in this.songs[i].votes){
           this.songs[i].total += this.songs[i].votes[j].rank;
@@ -59,7 +60,7 @@ export class MainController {
   }
 
   voteOnSong(song, option){
-    if (!option){
+    if (!option || option === 'Vote'){
       this.$app.error('Invalid value.');
       return;
     }
