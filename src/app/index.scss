@@ -39,11 +39,22 @@ $aqua: #5AADBB;
   }
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 //nav
 .title{
   padding:1em;
   font-size: 2em;
   color:$grey;
+}
+
+@media screen and (max-width: 680px) {
+  .top-bar { 
+      min-height: 12em !important;
+  }
 }
 
 //main

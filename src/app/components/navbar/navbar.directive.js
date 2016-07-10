@@ -20,5 +20,9 @@ class NavbarController {
   constructor ($route) {
     'ngInject';
     this.$route = $route;
+
+    this.redirect = (route) => {
+      console.log(route);
+    }
   }
 }
