@@ -5,6 +5,7 @@
 $topbar-bg-color: #5AADBB;
 $grey: #f5f5f5;
 $aqua: #5AADBB;
+$lightaqua: #DFFFFF;
 
 /**
  *  The import of foundation is made manually because there is still no links of the
@@ -62,6 +63,13 @@ html, body {
   margin:.2em;
   padding: .2em;
   background-color: $grey;
+}
+.songTitle {
+  margin:.6em 0;
+  background-color: $lightaqua;
+}
+.comments {
+  margin-bottom: .4em;
 }
 .song{
    border-bottom: 1px solid $aqua;

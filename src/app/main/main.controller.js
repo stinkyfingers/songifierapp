@@ -30,30 +30,40 @@ export class MainController {
       this.songs = resp.data;
       this.genres = this.parseGenres(resp.data);
       for (let i in this.songs){
-        this.songs[i].total = 0;
-        this.songs[i].user_vote = 'Vote';
-        let count = 0;
-        for (let j in this.songs[i].votes){
-          this.songs[i].total += this.songs[i].votes[j].rank;
-          if (this.songs[i].votes[j].rank && this.songs[i].votes[j].rank > 0){
-            count++;
-          }
-          if (this.songs[i].votes[j].user && this.songs[i].votes[j].user.id === this.user.id){
-            this.songs[i].user_vote = this.songs[i].votes[j].rank;
-          }
-        }
-        if (count){
-          this.songs[i].total = this.songs[i].total/(count);
-        }
+        this.songs[i] = this.calcTotal(this.songs[i]);
       }
     }, (err) => {
       this.$app.error(err.data);
     });
   }
 
+  calcTotal(song) {
+    song.total = 0;
+    song.user_vote = 'Vote';
+    let count = 0;
+    for (let j in song.votes){
+      song.total += song.votes[j].rank;
+      if (song.votes[j].rank && song.votes[j].rank > 0){
+        count++;
+      }
+      if (song.votes[j].user && song.votes[j].user.id === this.user.id){
+        song.user_vote = song.votes[j].rank;
+      }
+    }
+    if (count){
+      song.total = song.total/(count);
+    }
+    return song;
+  }
+
   updateSong(song){
     this.$song.update(song).then((resp) => {
         this.$app.success('Song ' + resp.data.name + ' saved.');
+        for (const i in this.songs) {
+          if (this.songs[i].id === song.id) {
+            this.songs[i] = this.calcTotal(song);
+          }
+        }
       }, (err) => {
         this.$app.error(err.data);
       });
@@ -61,7 +71,7 @@ export class MainController {
 
   voteOnSong(song, option){
     if (!option || option === 'Vote'){
-      this.$app.error('Invalid value.');
+      this.$app.error('Invalid vote value.');
       return;
     }
     for (let i in song.votes){
