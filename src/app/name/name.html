@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="large-6 columns">
+		    	<h1>Band Name Ideas</h1>
+		    </div>
+		    <div class="large-6 columns">
+		    	<form name="nameForm" novalidate>
+					<label for="name">Name:</label>
+					<input name="name" ng-model="name.name.title" type="text" required/>
+					<button class="primary" ng-click="name.save()" ng-disabled="nameForm.name.$invalid">Save</button>
+		    	</form>
+		    </div>
+		</div>
+	</div>
+
+	<div class="row names">
+	    <div class="row name" ng-repeat="(i, n) in name.names track by $index">
+		    <div class="large-6 small-12 columns idea">
+		 		{{n.title}}
+		    </div>
+		    <div class="large-4 small-12 columns">
+		    	By: {{n.user.name}}
+		    </div>
+		    <div class="large-2 small-12 columns">
+		    	<button ng-if="name.user._id === n.user._id" ng-click="name.delete(n)" class="warning">Delete</button>
+		    </div>
+	    </div>
+  	</div>
+  	<div ng-if="name.error" class="danger">{{name.error}}</div>
+</div>

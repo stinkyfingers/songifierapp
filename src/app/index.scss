@@ -87,6 +87,14 @@ html, body {
   max-width: 1400px;
 }
 
+//name
+.name {
+  background-color: $aqua;
+  margin: .6em 0 !important;
+  vertical-align: middle;
+  font-size: 2em;
+}
+
 //button 
 .editSong, .deleteSong, .commentSong {
   padding: .6em 0;
