@@ -29,6 +29,7 @@ export class NameController {
 				this.names = [];
 			}
 			this.names.push(resp.data);
+			this.name = null;
 		}, (err) => {
 			this.error = err;
 		});
