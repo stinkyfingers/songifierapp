@@ -10,6 +10,7 @@ export class MainController {
     this.log_out = () => {this.logout();};
     this.user = this.getUser();
     this.songs = this.getSongs();
+    this.checkToken();
     this.vote_options = ['Vote', 1, 2, 3, 4, 5];
     this.vote = (song, option) => {this.voteOnSong(song, option);};
     this.edit = (song) => {$location.path('/song/' + song.id);};
@@ -25,7 +26,29 @@ export class MainController {
     }
   }
 
+  checkToken() {
+    if (this.user && this.user.token) {
+      return;
+    }
+    const token = this.$route.current.params.token ? this.$route.current.params.token : null;
+    if (!token) {
+      return;
+    }
+    const user = {
+      token: token
+    }
+    this.$user.spotifyMe(token).then((resp) => {
+      user.name = resp.data.display_name;
+      this.$app.setUser(user);
+    }, (err) => {
+      this.$app.error(err.data);
+    })
+  }
+
   getSongs(){
+    if (!this.user) {
+      return;
+    }
     this.$song.getSongs().then((resp) => {
       this.songs = resp.data;
       this.genres = this.parseGenres(resp.data);

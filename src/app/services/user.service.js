@@ -3,14 +3,15 @@ export class UserService{
     'ngInject';
     this.$http = $http;
     this.api = AppService.api;
+    this.$app = AppService;
     
   }
-	login(user){
+	spotifyMe(token) {
 		return this.$http({
-			method: 'POST',
-			url: this.api + '/user',
-			data: user
-		});
+			method: 'GET',
+			url: this.api + '/spotify/me?token=' + token
+		})
 	}
 	
+
 }

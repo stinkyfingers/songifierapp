@@ -53,11 +53,15 @@
 
   <div class="row" ng-if="!main.user">
     <div class="large-4 columns">
-      <label>Email</label>
+      <!-- <label>Email</label>
       <input type="text" name="email" ng-model="main.creds.email">
       <label>Password</label>
       <input type="password" name="password" ng-model="main.creds.password">
       <button ng-click="main.log_in()">Log In</button>
+      <a href="http://localhost:8080/spotify/login"><button>LOGIN</button></a> -->
+      <form action="http://localhost:8080/spotify/login" method="post">
+        <button input type="submit">Login With Spotify</button>
+      </form>
     </div>
   </div>
 
